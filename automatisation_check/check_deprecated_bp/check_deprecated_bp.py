@@ -46,7 +46,6 @@ class DeprecatedBpCheck(base_check.BaseCheck):
                     str(project),
                     "-run=CompileAllBlueprints",
                     f"-AllowListFile={allow_list.relative_to(project.parent)}",
-                    "-ShowResultsOnly",
                     "-unattended",
                     "-nop4",
                     "-nosplash",
@@ -72,13 +71,21 @@ class DeprecatedBpCheck(base_check.BaseCheck):
             print(f"Blueprint deprecation check incomplete: {error}. Log: {log_path}")
             return
 
-        for asset, line_number, message in report.findings:
-            print(
-                bpl.color_set.yellow(
-                    f"Warning! Blueprint deprecation at {asset}: {message} "
-                    f"(log {log_path}:{line_number})"
+        for title, diagnostics, label, color in (
+            ("Deprecated", report.findings, "Warning! Blueprint deprecation", bpl.color_set.yellow),
+            ("Warnings", report.warnings, "Warning! Blueprint warning", bpl.color_set.yellow),
+            ("Errors", report.errors, "Error! Blueprint error", bpl.color_set.red),
+        ):
+            print(f"\n--- {title} report ---")
+            for asset, line_number, message in diagnostics:
+                print(
+                    color(
+                        f"{label} at {asset}:\n"
+                        f"{message}\n"
+                        f"(log {log_path}:{line_number})"
+                    )
                 )
-            )
+            print(f"Found {len(diagnostics)} Blueprint {title.lower()} diagnostic(s).")
         print(
             f"Found {len(report.findings)} Blueprint deprecation diagnostic(s); "
             f"{report.compiled_assets} Blueprint asset(s) selected by Unreal."
