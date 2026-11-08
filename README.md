@@ -87,3 +87,10 @@ Also lists the ten largest code files.
 
 (Right-click -> Open image in new tab to view full size)  
 <img src="https://github.com/xavier150/Unreal-Automated-Checks/wiki/images/check_project_info_terminal_result.png" alt="Check Project Info" width="50%" />
+
+## Additional Notes
+
+You can join my Discord server for more information or if you need help.  
+
+Discord [<img src="https://github.com/xavier150/Unreal-Automated-Checks/wiki/images/socials/discord_symbol_blurple.png" alt="Discord Icon" width="auto" height="12">](https://discord.gg/XuYeGCFtxa) ->
+[BleuRaven side projects](https://discord.gg/XuYeGCFtxa)  
