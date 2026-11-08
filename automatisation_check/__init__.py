@@ -13,6 +13,7 @@ from . import check_build_additional_files
 from . import check_build_icon
 from . import check_copyright_info
 from . import check_deprecated_cpp
+from . import check_deprecated_bp
 from . import check_empty_folders
 from . import check_encoding_files
 from . import check_project_info
@@ -45,6 +46,8 @@ if "check_copyright_info" in locals():
     importlib.reload(check_copyright_info)
 if "check_deprecated_cpp" in locals():
     importlib.reload(check_deprecated_cpp)
+if "check_deprecated_bp" in locals():
+    importlib.reload(check_deprecated_bp)
 if "check_empty_folders" in locals():
     importlib.reload(check_empty_folders)
 if "check_encoding_files" in locals():

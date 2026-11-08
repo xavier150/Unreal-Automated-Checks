@@ -7,6 +7,7 @@ from . import check_build_additional_files
 from . import check_build_icon
 from . import check_copyright_info
 from . import check_deprecated_cpp
+from . import check_deprecated_bp
 from . import check_empty_folders
 from . import check_encoding_files
 from . import check_project_info
@@ -23,9 +24,11 @@ def main() -> None:
         check_empty_folders.check_empty_folders.EmptyFoldersCheck(),
         check_encoding_files.check_encoding_files.EncodingFilesCheck(),
         check_deprecated_cpp.check_deprecated_cpp.DeprecatedCppCheck(),
+        check_deprecated_bp.check_deprecated_bp.DeprecatedBpCheck(),
         check_copyright_info.check_copyright_info.CopyrightInfoCheck(),
         check_asset_naming.check_asset_naming.AssetNamingCheck(),
         check_project_info.check_project_info.ProjectInfoCheck(),
+
     )
 
     print("Choose a check:")
