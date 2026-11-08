@@ -2,8 +2,8 @@ import os
 from pathlib import Path
 from typing import List, Tuple
 
-from . import config
-from . import plugin_utils
+from .. import config
+from .. import plugin_utils
 
 
 # Root of your Unreal project

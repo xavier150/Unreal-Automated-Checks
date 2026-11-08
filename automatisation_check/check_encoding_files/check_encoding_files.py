@@ -2,8 +2,8 @@ import os
 from pathlib import Path
 from typing import List
 
-from . import bpl
-from . import check_utils
+from .. import bpl
+from .. import check_utils
 
 def run_check_encoding_files() -> None:
     """Check encoding of source files using pathlib for file system operations."""

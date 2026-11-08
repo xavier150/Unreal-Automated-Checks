@@ -14,15 +14,39 @@ def main() -> None:
     bpl.console_utils.clear_console()
 
     checks = (
-        ("Project version", check_project_version.run_check_project_version),
-        ("Build icon", check_build_icon.run_check_build_icon),
-        ("Additional build files", check_build_additional_files.run_check),
-        ("Empty folders", check_empty_folders.run_check_empty_folders),
-        ("File encoding", check_encoding_files.run_check_encoding_files),
-        ("Deprecated C++", check_deprecated_cpp.run_check_deprecated_cpp),
-        ("Copyright", check_copyright_info.run_check_copyright_files),
-        ("Asset naming", check_asset_naming.run_check_asset_naming_files),
-        ("Project info", check_project_info.run_check_project_info),
+        (
+            "Project version",
+            check_project_version.check_project_version.run_check_project_version,
+        ),
+        ("Build icon", check_build_icon.check_build_icon.run_check_build_icon),
+        (
+            "Additional build files",
+            check_build_additional_files.check_build_additional_files.run_check,
+        ),
+        (
+            "Empty folders",
+            check_empty_folders.check_empty_folders.run_check_empty_folders,
+        ),
+        (
+            "File encoding",
+            check_encoding_files.check_encoding_files.run_check_encoding_files,
+        ),
+        (
+            "Deprecated C++",
+            check_deprecated_cpp.check_deprecated_cpp.run_check_deprecated_cpp,
+        ),
+        (
+            "Copyright",
+            check_copyright_info.check_copyright_info.run_check_copyright_files,
+        ),
+        (
+            "Asset naming",
+            check_asset_naming.check_asset_naming.run_check_asset_naming_files,
+        ),
+        (
+            "Project info",
+            check_project_info.check_project_info.run_check_project_info,
+        ),
     )
 
     print("Choose a check:")

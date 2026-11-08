@@ -2,10 +2,10 @@ import os
 from pathlib import Path
 from typing import List
 
-from . import bpl
-from . import check_utils
-from . import config
-from . import project_utils
+from .. import bpl
+from .. import check_utils
+from .. import config
+from .. import project_utils
 
 def run_check_copyright_files() -> None:
     """Check copyright information in source files using pathlib for file system operations."""

@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import List
 
-from . import bpl
-from . import config
-from . import project_utils
+from .. import bpl
+from .. import config
+from .. import project_utils
 
 def run_check_build_icon() -> None:
     print("- Checking build icon...")

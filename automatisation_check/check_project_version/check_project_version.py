@@ -1,5 +1,5 @@
-from . import bpl
-from . import project_version_utils
+from .. import bpl
+from .. import project_version_utils
 
 def run_check_project_version() -> bool:
     print("- Checking project version...")

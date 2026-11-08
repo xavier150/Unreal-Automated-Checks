@@ -7,10 +7,10 @@ not unmarked calls to deprecated APIs. Plugin exclusions come from config.
 
 import re
 
-from . import bpl
-from . import check_utils
-from . import config
-from . import plugin_utils
+from .. import bpl
+from .. import check_utils
+from .. import config
+from .. import plugin_utils
 
 
 def run_check_deprecated_cpp() -> None:

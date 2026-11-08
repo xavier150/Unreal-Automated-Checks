@@ -1,8 +1,8 @@
 from pathlib import Path
 import subprocess
 
-from . import config
-from . import check_utils
+from .. import check_utils
+from .. import config
 
 
 def run_check_asset_naming_files() -> None:

@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import List
 
-from . import bpl
-from . import check_utils
-from . import config
+from .. import bpl
+from .. import check_utils
+from .. import config
 
 def run_check_empty_folders() -> None:
     print("- Checks empty folders...")
