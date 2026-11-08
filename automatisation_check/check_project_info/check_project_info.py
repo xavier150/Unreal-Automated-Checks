@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from typing import List, Tuple
 
+from .. import base_check
 from .. import config
 from .. import plugin_utils
 
@@ -118,8 +119,14 @@ def get_largest_code_files(limit: int = 10) -> None:
         print(f"{idx:2d}. {str(relative_path):<60} {size_mb:>10.2f} MB ({size:>12,} bytes)")
 
 
-def run_check_project_info() -> None:
+class ProjectInfoCheck(base_check.BaseCheck):
+    name = "Project info"
 
-    print("- Checking project information...")
-    check_code_info()
-    get_largest_code_files()
+    def run_check(self) -> None:
+        print("- Checking project information...")
+        check_code_info()
+        get_largest_code_files()
+
+
+def run_check_project_info() -> None:
+    ProjectInfoCheck().run_check()

@@ -1,5 +1,6 @@
 import importlib
 
+from . import base_check
 from . import config
 from . import bpl
 from . import project_utils
@@ -18,6 +19,8 @@ from . import check_project_info
 from . import check_project_version
 from . import main
 
+if "base_check" in locals():
+    importlib.reload(base_check)
 if "config" in locals():
     importlib.reload(config)
 if "bpl" in locals():

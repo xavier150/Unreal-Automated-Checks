@@ -1,3 +1,6 @@
+from typing import Tuple
+
+from . import base_check
 from . import bpl
 from . import check_asset_naming
 from . import check_build_additional_files
@@ -13,46 +16,22 @@ def main() -> None:
     bpl.advprint.print_simple_title("Automatisation checks")
     bpl.console_utils.clear_console()
 
-    checks = (
-        (
-            "Project version",
-            check_project_version.check_project_version.run_check_project_version,
-        ),
-        ("Build icon", check_build_icon.check_build_icon.run_check_build_icon),
-        (
-            "Additional build files",
-            check_build_additional_files.check_build_additional_files.run_check,
-        ),
-        (
-            "Empty folders",
-            check_empty_folders.check_empty_folders.run_check_empty_folders,
-        ),
-        (
-            "File encoding",
-            check_encoding_files.check_encoding_files.run_check_encoding_files,
-        ),
-        (
-            "Deprecated C++",
-            check_deprecated_cpp.check_deprecated_cpp.run_check_deprecated_cpp,
-        ),
-        (
-            "Copyright",
-            check_copyright_info.check_copyright_info.run_check_copyright_files,
-        ),
-        (
-            "Asset naming",
-            check_asset_naming.check_asset_naming.run_check_asset_naming_files,
-        ),
-        (
-            "Project info",
-            check_project_info.check_project_info.run_check_project_info,
-        ),
+    checks: Tuple[base_check.BaseCheck, ...] = (
+        check_project_version.check_project_version.ProjectVersionCheck(),
+        check_build_icon.check_build_icon.BuildIconCheck(),
+        check_build_additional_files.check_build_additional_files.BuildAdditionalFilesCheck(),
+        check_empty_folders.check_empty_folders.EmptyFoldersCheck(),
+        check_encoding_files.check_encoding_files.EncodingFilesCheck(),
+        check_deprecated_cpp.check_deprecated_cpp.DeprecatedCppCheck(),
+        check_copyright_info.check_copyright_info.CopyrightInfoCheck(),
+        check_asset_naming.check_asset_naming.AssetNamingCheck(),
+        check_project_info.check_project_info.ProjectInfoCheck(),
     )
 
     print("Choose a check:")
     print("[1] ALL")
-    for choice, (name, _) in enumerate(checks, start=2):
-        print(f"[{choice}] Check {name}")
+    for choice, check in enumerate(checks, start=2):
+        print(f"[{choice}] Check {check.name}")
 
     while True:
         selection = input("Choice: ").strip()
@@ -72,5 +51,5 @@ def main() -> None:
         print("Invalid choice. Please select one of the listed numbers.")
 
     print("Start checks...")
-    for _, run_check in selected_checks:
-        run_check()
+    for check in selected_checks:
+        check.run_check()
