@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Dict, List
 
-unreal_path: Path = Path(r"M:\MMVS_ProjectFiles_v2\UnrealProject\Binaries\Win64\UnrealEditor.exe")
+unreal_path: Path = Path(r"M:\MMVS_EngineFiles_v2\UnrealProject\Binaries\Win64\UnrealEditor.exe")
 project_path: Path = Path(r"M:\MMVS_ProjectFiles_v2\UnrealProject\MacroMicroVrService.uproject")
 splash_and_icons_path: Path = Path(r"M:\MMVS_ProjectFiles_v2\SourceAssets\SplashAndIcons")
 
