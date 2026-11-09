@@ -3,7 +3,7 @@
 from dataclasses import dataclass, field
 from pathlib import Path
 import re
-from typing import List, Optional, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 from .. import check_utils
 from .. import config
@@ -19,7 +19,7 @@ def get_asset_allow_list() -> List[str]:
         path.resolve()
         for path in plugin_utils.get_excluded_plugin_root_path_list(config.project_path)
     ]
-    assets = set()
+    assets: Set[str] = set()
     for content in check_utils.get_project_and_plugin_content_paths():
         for asset in sorted(content.rglob("*")):
             if not asset.is_file() or asset.suffix.lower() != ".uasset":
@@ -34,9 +34,9 @@ def get_asset_allow_list() -> List[str]:
 
 @dataclass
 class CompilationReport:
-    findings: List[Tuple[str, int, str]] = field(default_factory=list)
-    warnings: List[Tuple[str, int, str]] = field(default_factory=list)
-    errors: List[Tuple[str, int, str]] = field(default_factory=list)
+    findings: List[Tuple[str, int, str]] = field(default_factory=lambda: [])
+    warnings: List[Tuple[str, int, str]] = field(default_factory=lambda: [])
+    errors: List[Tuple[str, int, str]] = field(default_factory=lambda: [])
     compiled_assets: int = 0
     summary: Optional[Tuple[int, int, int]] = None
 
@@ -54,7 +54,7 @@ def parse_compilation_log(log_path: Path) -> CompilationReport:
         r"\[Compiler\] (.*)"
     )
     current_asset = ""
-    message_severities = {}
+    message_severities: Dict[str, str] = {}
     with log_path.open("r", encoding="utf-8-sig", errors="replace") as log:
         for line_number, line in enumerate(log, start=1):
             asset_match = asset_pattern.search(line)
