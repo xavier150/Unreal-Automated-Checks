@@ -20,7 +20,7 @@ class DeprecatedBpCheck(base_check.BaseCheck):
 
     def run_check(self) -> None:
         print("- Checking Blueprint deprecation diagnostics...")
-        editor = config.unreal_path.with_name("UnrealEditor-Cmd.exe")
+        editor = config.unreal_cmd_path
         project = config.project_path.resolve()
         if not editor.is_file() or not project.is_file():
             print(
@@ -36,8 +36,7 @@ class DeprecatedBpCheck(base_check.BaseCheck):
                 print("No project/plugin .uasset candidates found; Blueprint compilation skipped.")
                 return
             log_path.parent.mkdir(parents=True, exist_ok=True)
-            # Unreal resolves AllowListFile relative to the project directory.
-            with TemporaryDirectory(prefix="bp_check_", dir=project.parent) as directory:
+            with TemporaryDirectory(prefix="bp_check_", dir=log_path.parent) as directory:
                 allow_list = Path(directory) / "assets.txt"
                 # LoadANSITextFileToStrings widens each byte; UTF-8 is not supported.
                 allow_list.write_text("\n".join(assets) + "\n", encoding="latin-1")
